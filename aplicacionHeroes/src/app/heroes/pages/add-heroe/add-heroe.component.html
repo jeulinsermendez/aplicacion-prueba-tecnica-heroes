@@ -1,0 +1,76 @@
+<h1 *ngIf="!hero">{{ data === null ? 'Nuevo héroe' : 'Editar héroe'}}</h1>
+
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
+  <div fxFlex="50">
+
+    <mat-form-field >
+      <mat-label>Superhéroe</mat-label>
+      <input matInput type="text" [(ngModel)]="heroToFormsForm.superhero" required>
+      <mat-error *ngIf="heroToFormsForm.superhero == ''">
+          El nombre es obligatorio
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label>Alter ego</mat-label>
+      <input matInput type="text" [(ngModel)]="heroToFormsForm.alter_ego" required>
+      <mat-error *ngIf="heroToFormsForm.alter_ego == ''">
+          El alter ego es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+
+  <mat-form-field >
+    <mat-label>Primera aparición</mat-label>
+    <input matInput type="text" [(ngModel)]="heroToFormsForm.first_appearance" required>
+    <mat-error *ngIf="heroToFormsForm.alter_ego == ''">
+        La primera aarición es obligatoria
+    </mat-error>
+</mat-form-field>
+
+  <div fxLayout="row" fxLayout.xs="column">
+
+    <mat-form-field >
+      <mat-label>Personaje</mat-label>
+      <input matInput type="text" [(ngModel)]="heroToFormsForm.characters" required>
+
+    </mat-form-field>
+  </div>
+
+
+  <div fxLayout="row" fxLayout.xs="column">
+    <mat-form-field >
+      <mat-label>Creador</mat-label>
+      <mat-select [(ngModel)]="heroToFormsForm.publisher" required>
+        <mat-option *ngFor=" let publish of publisher " [value]="publish.id">{{publish.id}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayout.xs="column">
+    <button class="btn btn-primary p-2 button-save mt-4" mat-button color="primary"
+    [disabled]="heroToFormsForm.superhero == '' || heroToFormsForm.first_appearance == ''
+                && heroToFormsForm.alter_ego || heroToFormsForm.characters == ''"   (click)="save()">
+      <mat-icon>edit</mat-icon>
+      {{ data === null ? 'Crear' : 'Editar'}}
+    </button>
+  </div>
+
+
+
+
+
+  </div>
+  <div fxFlex="50" fxLayout.xs="column">
+    <label>
+
+      <span>Seleccionar Imagen</span>
+      <input #imageInput mat-file  type="file"
+      accept="image/*"
+      (change)="processFile(imageInput)">
+      </label>
+      <div *ngIf="heroToFormsForm.image != ''" fxLayoutGap="30px">
+        <img onerror="this.onerror=null;this.src='assets/no-image.png'" [src]="heroToFormsForm | imagen"  alt="" width="200px">
+      </div>
+  </div>
+</div>
+

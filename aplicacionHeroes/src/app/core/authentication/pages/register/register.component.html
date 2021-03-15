@@ -1,0 +1,48 @@
+
+<div class="container">
+  <div id="central">
+      <div id="login" >
+          <div class="titulo">
+              Registro de usuario
+          </div>
+          <div fxLayout="column">
+            <mat-form-field >
+              <mat-label>Nombre de usuario</mat-label>
+              <input matInput type="text" name="usuario" [(ngModel)]="user.usuario" required>
+
+              <mat-error *ngIf="user.usuario">
+                  El nombre es obligatorio
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>Email</mat-label>
+              <input matInput type="text" name="email" [(ngModel)]="user.email" required>
+
+              <mat-error *ngIf="user.email == ''">
+                  El email es obligatorio
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field >
+
+              <mat-label>Rol</mat-label>
+                <mat-select [(ngModel)]="user.rol" required>
+                  <mat-option *ngFor=" let rol of rols " [value]="rol.id">{{rol.id}}</mat-option>
+                </mat-select>
+
+              <mat-error *ngIf="user.email == ''">
+                  El email es obligatorio
+              </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button  (click)="register()" [disabled]="user.usuario === '' || user.email === '' || user.rol === '' " >
+              Registrarse
+            </button>
+
+          </div>
+
+          <div class="pie-form">
+              <a routerLink="/auth/login">¿Ya tienes Cuenta? Registrate</a>
+          </div>
+      </div>
+  </div>
+</div>

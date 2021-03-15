@@ -1,0 +1,28 @@
+
+
+<div class="container">
+  <div id="central">
+      <div id="login">
+          <div class="titulo">
+              Login de usuario
+          </div>
+          <mat-form-field >
+            <mat-label>Email</mat-label>
+            <input matInput type="text" name="email" [(ngModel)]="user.email" required>
+
+            <mat-error *ngIf="user.email == ''">
+                El email es obligatorio
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button  (click)="login()" >
+            Ingresar
+          </button>
+
+          <div class="pie-form">
+              <a routerLink="/auth/register">¿No tienes Cuenta? Registrate</a>
+          </div>
+      </div>
+  </div>
+</div>
+<a routerLink ="/auth/register">Ir a registro</a>
